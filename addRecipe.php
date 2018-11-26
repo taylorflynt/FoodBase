@@ -17,13 +17,13 @@
   <br>
   <h2>Add a Recipe</h2>
 
-  <form action="">
+  <form  action="addRecipeNow.php" method="post">
     Recipe name:<br>
-    <input type="text" name="recipeName" value="">
+    <input type="text" name="recipe_name">
     <br>
     Cuisine:<br>
 
-    <select name="cuisine" style="width:150px">
+    <select name="cuisine_name" style="width:150px">
       <?php
       $servername = "dbm2.itc.virginia.edu";
       $username = "Foodbase";
@@ -32,24 +32,23 @@
       $conn = new mysqli($servername, $username, $password, $dbname);
 
       if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
+        die("Connection failed: " . $conn->connect_error);
       }
       $sql = "SELECT cuisine_name FROM cuisine";
       $result = $conn->query($sql);
       while($row = $result->fetch_assoc())
       {
-        echo "<option value=\"owner1\">" . $row['cuisine_name'] . "</option>";
+        echo "<option>" . $row['cuisine_name'] . "</option>";
       }
       // Close menu form
-      $menu = "</select></form>";
+      $menu = "</select>";
       // Output dropdown menu
       echo $menu;
       $conn->close();
       ?>
     </select>
-    <br>
+    <br><br>
     <input type="submit" value="Submit">
   </form>
 </body>
-
 </html>
