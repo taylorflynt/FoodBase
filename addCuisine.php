@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Foodbase</title>
+  <title>Foodbase Tool</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -10,19 +10,21 @@
   <div class="topnav">
     <a href="myRecipes.php">My Recipes</a>
     <a href="myIngredients.php">My Ingredients</a>
-    <a class="active" href="myList.php">My Shopping List</a>
+    <a href="myList.php">My Shopping List</a>
     <a href="addRecipe.php">Add a Recipe</a>
     <a href="addIngredient.php">Add Ingredients</a>
-    <a href="addCuisine.php"> Add a Cuisine</a>
+    <a class="active" href="addCuisine.php"> Add a Cuisine</a>
     <a class="logoutTab" href="logout.php">Logout</a>
   </div>
   <br>
-  <h2>My Shopping List</h2>
+  <h2>Add a Cuisine</h2>
 
-  <div class="recipeList">
-    <?php include('getShoppingList.php') ?>
-  </div>
-
+  <form  action="addCuisineNow.php" method="post">
+    Cuisine Name:<br>
+    <input type="text" name="cuisine_name" value="">
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
 </body>
 
 </html>

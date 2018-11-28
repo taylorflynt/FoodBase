@@ -25,3 +25,8 @@
     background-color: #4CAF50;
     color: white;
 }
+
+.topnav a.logoutTab {
+  background-color: #EF2B34;
+  color: white;
+}

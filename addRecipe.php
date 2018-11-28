@@ -13,6 +13,8 @@
     <a href="myList.php">My Shopping List</a>
     <a class="active" href="addRecipe.php">Add a Recipe</a>
     <a href="addIngredient.php">Add Ingredients</a>
+    <a href="addCuisine.php"> Add a Cuisine</a>
+    <a class="logoutTab" href="logout.php">Logout</a>
   </div>
   <br>
   <h2>Add a Recipe</h2>
