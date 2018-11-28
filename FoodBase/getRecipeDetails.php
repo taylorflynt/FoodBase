@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
     $recipeID = $row["recipe_ID"];
     $cuisineID = $row["cuisine_ID"];
-    echo "Recipe Name: " . $row["recipe_name"]. "<br><br>";
+    echo "Recipe Name: " . $row["recipe_name"]. "<br><a href='deleteRecipe.php?recipe_id=".$recipeID."'><button>Delete recipe</button></a><br><br>";
   }
 } else {
   echo "0 results";
@@ -62,7 +62,7 @@ if ($result->num_rows > 0) {
 }
 echo "<br>";
 
-$sql = "SELECT step_number, instruction FROM steps WHERE recipe_ID = " .$recipeID. "";
+$sql = "SELECT step_number, instruction FROM steps WHERE recipe_ID = " .$recipeID. " ORDER BY step_number ASC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

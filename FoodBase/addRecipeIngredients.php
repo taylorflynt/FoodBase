@@ -89,6 +89,7 @@
     $result = $conn->query($sql);
     session_start();
     $_SESSION['recipe_ID'] = $recipeID;
+    $_SESSION['step_count'] = 1;
     header("Location:addRecipeSteps.php");
     exit;
   }

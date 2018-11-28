@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Foodbase Tool</title>
+  <title>Foodbase</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -30,6 +30,8 @@
 
   session_start();
   $recipeID = $_SESSION['recipe_ID'];
+  $stepCount = $_SESSION['step_count'];
+
   $servername = "dbm2.itc.virginia.edu";
   $username = "Foodbase";
   $password = "Foodbase";
@@ -46,13 +48,15 @@
     //add step number, instruction, and recipe_ID
 
     $sql = "INSERT INTO steps (step_number, instruction, recipe_ID)
-            VALUES (80, '" .$_POST['stepInstructions']. "', '" .$recipeID. "')" ;
+            VALUES ($stepCount, '" .$_POST['stepInstructions']. "', '" .$recipeID. "')" ;
     $result = $conn->query($sql);
+    $_SESSION['step_count'] += 1;
 
   } else if (isset($_POST["finishRecipe"])){
     $sql = "INSERT INTO steps (step_number, instruction, recipe_ID)
-            VALUES (80, '" .$_POST['stepInstructions']. "', '" .$recipeID. "')" ;
+            VALUES ($stepCount, '" .$_POST['stepInstructions']. "', '" .$recipeID. "')" ;
     $result = $conn->query($sql);
+    $_SESSION['step_count'] = 0;
     header("Location:myRecipes.php");
     exit;
   }
