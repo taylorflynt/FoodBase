@@ -20,7 +20,7 @@
   <h2>My Shopping List</h2>
 
   <form  action="addToList.php" method="post">
-    <input type="submit" value="Add Ingredient To List"><br>
+    <input type="submit" value="Add Ingredient To List"><br><br>
     <div class="recipeList">
       <?php include('getShoppingList.php') ?>
     </div>
