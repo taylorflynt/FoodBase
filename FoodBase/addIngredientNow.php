@@ -28,7 +28,7 @@
   }
 
   $sql = "SELECT ingredient_ID FROM ingredient
-  WHERE ingredient_name = '" .$_POST['ingredient_name']."'";
+  WHERE upper(ingredient_name) = upper('" .$_POST['ingredient_name']."')";
   $result = $conn->query($sql);
 
   while($row = $result->fetch_assoc())
@@ -43,7 +43,7 @@
   $result = $conn->query($sql);
   if ($result->num_rows == 0) {
     $sql = "INSERT INTO ing_inventory (ingredient_ID, inventory_ID, quantity, unit)
-    VALUES ($ingredientID, $userID, $quantity , '".$unit."') ON DUPLICATE KEY UPDATE quantity = quantity + " . $quantity ;
+    VALUES ($ingredientID, $userID, $quantity , '".$unit."')";
   } else {
     $sql = "UPDATE ing_inventory SET quantity = quantity + " . $quantity . " WHERE ingredient_ID = " .$ingredientID . " AND inventory_ID = " . $userID;
   }
