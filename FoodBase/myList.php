@@ -19,9 +19,12 @@
   <br>
   <h2>My Shopping List</h2>
 
-  <div class="recipeList">
-    <?php include('getShoppingList.php') ?>
-  </div>
+  <form  action="addToList.php" method="post">
+    <input type="submit" value="Add Ingredient To List"><br>
+    <div class="recipeList">
+      <?php include('getShoppingList.php') ?>
+    </div>
+  </form>
 
 </body>
 
