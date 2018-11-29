@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Foodbase Tool</title>
+  <title>Foodbase</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 

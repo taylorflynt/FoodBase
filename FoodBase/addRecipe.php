@@ -25,7 +25,7 @@
     <br>
     Cuisine:<br>
 
-    <select name="cuisine_name" style="width:150px">
+    <select name="cuisine_name">
       <?php
       $servername = "dbm2.itc.virginia.edu";
       $username = "Foodbase";
