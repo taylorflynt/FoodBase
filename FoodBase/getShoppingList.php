@@ -19,7 +19,7 @@ $sql = "SELECT ingredient_ID, quantity, unit FROM list_ingredient
 WHERE list_ID = ".$userID."";
 $result = $conn->query($sql);
 
-echo "<table><tr><th>Ingredient Name</th><th>Type of food</th><th>Quantity</th><th>Units</th></tr>";
+echo "<table><tr><th align='left'>Ingredient</th><th align='left'>Food type</th><th align='left'>Quantity</th><th align='left'>Units</th></tr>";
 
 while($row = $result->fetch_assoc()) {
 

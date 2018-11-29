@@ -15,10 +15,16 @@
     die("Connection failed: " . $conn->connect_error);
   }
 
-
-  $sql = "INSERT INTO ingredient (ingredient_name, type_of_food)
-  VALUES ('" .$_POST['ingredient_name']. "', '" .$_POST['type_of_food']. "')" ;
+  $sql = "SELECT ingredient_name FROM ingredient WHERE upper(ingredient_name)=upper('".$_POST['ingredient_name']."') AND upper(type_of_food) = upper('".$_POST['type_of_food']."')";
   $result = $conn->query($sql);
+
+  if ($result->num_rows == 0){
+    $sql = "INSERT INTO ingredient (ingredient_name, type_of_food)
+    VALUES ('" .$_POST['ingredient_name']. "', '" .$_POST['type_of_food']. "')" ;
+    $result = $conn->query($sql);
+  }
+  else{
+  }
 
   $sql = "SELECT ingredient_ID FROM ingredient
   WHERE ingredient_name = '" .$_POST['ingredient_name']."'";
@@ -33,7 +39,8 @@
   $unit = $_POST['ingredient_unit'];
 
   $sql = "INSERT INTO ing_inventory (ingredient_ID, inventory_ID, quantity, unit)
-  VALUES ($ingredientID, $userID, $quantity , $unit)";
+  VALUES ($ingredientID, $userID, $quantity , '".$unit."')";
+  echo $sql;
   $result = $conn->query($sql);
 
   $conn->close();
