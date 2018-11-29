@@ -10,7 +10,9 @@
   <br>
   <h2>Login</h2><br>
   <form method="post">
-    <select name="inventory_name" style="width:300px">
+    Name:<br>
+    <select name="inventory_name">
+      <option></option>
       <?php
       $servername = "dbm2.itc.virginia.edu";
       $username = "Foodbase";
@@ -36,6 +38,7 @@
       $conn->close();
       ?>
       <br><br>
+      Password:<br>
       <input type="password" name="userPassword" value=""><br><br>
       <input type="submit" name="loginUser" value="Login">
     </form>
@@ -66,7 +69,15 @@
 
       $inventoryName = $conn->escape_string($_POST['inventory_name']);
 
-      if ($_POST['userPassword'] == 'password'){
+      $sql = "SELECT password FROM inventory
+      WHERE name ='" .$inventoryName."'";
+      $result = $conn->query($sql);
+      while($row = $result->fetch_assoc())
+      {
+        $passwordReq =  $row['password'];
+      }
+
+      if ($_POST['userPassword'] == $passwordReq){
 
         $sql = "SELECT inventory_ID FROM inventory
         WHERE name = '"  .$inventoryName. "'";
@@ -95,8 +106,8 @@
       VALUES ('".$_POST['newUserName']."')";
       $result = $conn->query($sql);
 
-      $sql = "INSERT INTO inventory (name)
-      VALUES ('".$_POST['newUserName']."')";
+      $sql = "INSERT INTO inventory (name, password)
+      VALUES ('".$_POST['newUserName']."', '" .$_POST['newUserPassword']."')";
       $result = $conn->query($sql);
 
     $sql = "SELECT inventory_ID FROM inventory

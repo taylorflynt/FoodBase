@@ -17,9 +17,9 @@
     <a class="logoutTab" href="logout.php">Logout</a>
   </div>
   <br>
-  <h2>Add an Ingredient to Inventory</h2>
+  <h2>Add an Ingredient to Shopping List</h2>
 
-  <form  action="addIngredientNow.php" method="post">
+  <form  action="addToListNow.php" method="post">
     Ingredient Name:<br>
     <input type="text" name="ingredient_name" value="">
     <br>

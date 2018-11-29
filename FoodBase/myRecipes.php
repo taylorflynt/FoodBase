@@ -55,6 +55,9 @@
       <select name="color" style="width:300px">
 
         <?php
+        session_start();
+        $userID = $_SESSION['user_ID'];
+
         $servername = "dbm2.itc.virginia.edu";
         $username = "Foodbase";
         $password = "Foodbase";
@@ -65,33 +68,44 @@
           die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT recipe_name FROM possible_recipes";
-        $result = $conn->query($sql);
-        //echo "<option> </option>";
-        while($row = $result->fetch_assoc())
-        {
-          echo "<option>" . $row['recipe_name'] . "</option>";
-        }
-        $menu = "</select>";
-        // Output dropdown menu
-        echo $menu;
-        $conn->close();
-        ?>
-        <br>
-        <input type="submit" name="submit" value="Get recipe details">
-      </form>
-      <?php
-      if(isset($_POST['submit'])){
-        $selected_val = $_POST['color'];
-        session_start();
-        $_SESSION['selected_val'] = $selected_val;
-        header("Location:getRecipeDetails.php");
-        exit;
-      }
-      ?>
-      <br><br>
+        $sql = "DROP VIEW possible_recipes";
+        echo $sql;
+         $conn->query($sql);
+
+        $sql = "CREATE VIEW possible_recipes
+        AS (SELECT recipe_id, recipe_name, cuisine_id FROM recipe WHERE recipe_id not in
+          (SELECT DISTINCT recipe_id FROM recipe NATURAL JOIN recipe_ingredient WHERE ingredient_id NOT IN
+            (SELECT ingredient_id FROM ing_inventory WHERE inventory_id = ".$userID.")))";
+            echo $sql;
+            $conn->query($sql);
+
+            $sql = "SELECT recipe_name FROM possible_recipes";
+            $result = $conn->query($sql);
+            echo "<option> </option>";
+            while($row = $result->fetch_assoc())
+            {
+              echo "<option>" . $row['recipe_name'] . "</option>";
+            }
+            $menu = "</select>";
+            // Output dropdown menu
+            echo $menu;
+            $conn->close();
+            ?>
+            <br>
+            <input type="submit" name="submit" value="Get recipe details">
+          </form>
+          <?php
+          if(isset($_POST['submit'])){
+            $selected_val = $_POST['color'];
+            session_start();
+            $_SESSION['selected_val'] = $selected_val;
+            header("Location:getRecipeDetails.php");
+            exit;
+          }
+          ?>
+          <br><br>
 
 
-    </body>
+        </body>
 
-    </html>
+        </html>

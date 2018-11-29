@@ -20,7 +20,7 @@
   <h2>Add a Recipe</h2>
 
   <form  action="addRecipeNow.php" method="post">
-    Recipe name:<br>
+    Recipe Name:<br>
     <input type="text" name="recipe_name">
     <br>
     Cuisine:<br>
