@@ -18,9 +18,13 @@
   <br>
   <h2>My Ingredients</h2>
 
+
   <div class="recipeList">
     <?php include('getIngredients.php') ?>
   </div>
+  <form  action="removeFromInventory.php" method="post">
+    <input type="submit" value="Remove Ingredient From Inventory"><br><br>
+  </form>
 </body>
 
 </html>

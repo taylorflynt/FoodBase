@@ -21,11 +21,13 @@
 
   <form  action="addToList.php" method="post">
     <input type="submit" value="Add Ingredient To List"><br><br>
-    <div class="recipeList">
-      <?php include('getShoppingList.php') ?>
-    </div>
   </form>
-
+  <form  action="removeFromList.php" method="post">
+    <input type="submit" value="Remove Ingredient From List"><br><br>
+  </form>
+  <div class="recipeList">
+    <?php include('getShoppingList.php') ?>
+  </div>
 </body>
 
 </html>
