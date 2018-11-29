@@ -4,8 +4,21 @@ html *
   font-family:  "Lato", sans-serif;
 }
 
-h1, h2, input[type=submit], input[type=text], select {
+h1 {
+  margin-top: 5px;
+}
+
+h1, h2, input[type=submit], input[type=text], input[type=password], select, form, table{
   margin-left: 5px !important;
+}
+
+table {
+   border: 1px solid black;
+}
+
+td {
+  border-right: 1px solid black;
+  border-top: 1px solid black;
 }
 
 body {

@@ -15,7 +15,7 @@
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql = "SELECT ingredient_name FROM ingredient WHERE ingredient_name='".$_POST['ingredient_name']."' AND type_of_food='".$_POST['type_of_food']."'";
+  $sql = "SELECT ingredient_name FROM ingredient WHERE upper(ingredient_name)=upper('".$_POST['ingredient_name']."') AND upper(type_of_food) = upper('".$_POST['type_of_food']."')";
   $result = $conn->query($sql);
 
   if ($result->num_rows == 0){
