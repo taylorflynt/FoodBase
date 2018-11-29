@@ -11,10 +11,10 @@ $dbname = "Foodbase";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 $sql = "SELECT ingredient_ID, quantity, unit FROM ing_inventory
-WHERE inventory_ID = ".$userID."";
+WHERE inventory_ID = ".$userID." ";
 $result = $conn->query($sql);
 
-echo "<table><tr><th align='left'>Ingredient</th><th align='left'>Food Type</th><th align='left'>Quantity</th><th align='left'>Units</th><th></th></tr>";
+echo "<table><tr><th align='left'>Ingredient</th><th align='left'>Food Type</th><th align='left'>Quantity</th><th align='left'>Units</th></tr>";
 while($row = $result->fetch_assoc()) {
 
   $ingredientQuantity = $row['quantity'];
@@ -32,7 +32,7 @@ while($row = $result->fetch_assoc()) {
     $typeOfFood = $row2['type_of_food'];
     echo "<tr><td>".$ingredientName."</td><td>".$typeOfFood."</td><td>" .$ingredientQuantity."</td><td>" .$ingredientUnit."</td>";
     //echo "<td><form action='deleteFromInventory.php?id=".$row['ingredient_ID']."'><input type='submit' value='Delete Ingredient' /></form></td></tr>";
-    echo "<td><a id='tableButton' href=\"deleteFromInventory.php?id=".$row['ingredient_ID']."\">Remove</a></td></tr>";
+    //echo "<td><a id='tableButton' href=\"deleteFromInventory.php?id=".$row['ingredient_ID']."\">Remove</a></td></tr>";
   }
 }
 
