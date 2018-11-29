@@ -53,9 +53,18 @@ if ($result->num_rows > 0) {
 $sql = "SELECT ingredient_name, ingredient_ID FROM ingredient NATURAL JOIN recipe_ingredient WHERE recipe_ID = " .$recipeID. "";
 $result = $conn->query($sql);
 
+
 if ($result->num_rows > 0) {
+  echo "Ingredients <br>";
   while($row = $result->fetch_assoc()) {
-    echo "Ingredient Name: " . $row["ingredient_name"]. "<br>";
+    $sql2 = "SELECT quantity, unit, specifications FROM recipe_ingredient WHERE recipe_ID = " .$recipeID. " AND ingredient_ID = " .$row["ingredient_ID"] . "";
+    $result2 = $conn->query($sql2);
+    $row2 = $result2->fetch_assoc();
+    if ($row2["specifications"] != " ") {
+      echo $row2["quantity"] . " " . $row2["unit"] . " " . $row["ingredient_name"]. ", " . $row2["specifications"] . "<br>";
+    } else {
+      echo $row2["quantity"] . " " . $row2["unit"] . " " . $row["ingredient_name"]. " " . $row2["specifications"] . "<br>";
+    }
   }
 } else {
   echo "0 results";
