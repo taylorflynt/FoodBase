@@ -16,7 +16,7 @@
   }
 
   $sql = "SELECT ingredient_ID FROM ingredient
-  WHERE ingredient_name = '" .$_POST['ingredient_name']."'";
+  WHERE upper(ingredient_name) = upper('" .$_POST['ingredient_name']."')";
   $result = $conn->query($sql);
 
   while($row = $result->fetch_assoc())
