@@ -19,10 +19,9 @@
   <br>
   <h2>My Recipes</h2>
   <form action="#" method="post">
-    <select name="color" style="width:300px">
+    <select name="color">
 
       <?php
-
       $servername = "dbm2.itc.virginia.edu";
       $username = "Foodbase";
       $password = "Foodbase";
@@ -49,10 +48,10 @@
       <br>
       <input type="submit" name="submit" value="Get recipe details">
     </form>
-    <br><br>
+    <br>
     <h2>Recipes You Can Make</h2>
-    <form action="#" method="post">
-      <select name="color" style="width:300px">
+    <form action="" method="post">
+      <select name="color">
 
         <?php
         session_start();
@@ -70,7 +69,7 @@
 
         $sql = "DROP VIEW possible_recipes";
         echo $sql;
-         $conn->query($sql);
+        $conn->query($sql);
 
         $sql = "CREATE VIEW possible_recipes
         AS (SELECT recipe_id, recipe_name, cuisine_id FROM recipe WHERE recipe_id not in
