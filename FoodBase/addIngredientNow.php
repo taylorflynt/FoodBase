@@ -24,6 +24,7 @@
     $result = $conn->query($sql);
   }
   else{
+
   }
 
   $sql = "SELECT ingredient_ID FROM ingredient
@@ -38,8 +39,15 @@
   $quantity = $_POST['ingredient_quantity'];
   $unit = $_POST['ingredient_unit'];
 
-  $sql = "INSERT INTO ing_inventory (ingredient_ID, inventory_ID, quantity, unit)
-  VALUES ($ingredientID, $userID, $quantity , '".$unit."')";
+  $sql = "SELECT * FROM ing_inventory WHERE ingredient_ID = " . $ingredientID . " AND inventory_ID = ". $userID;
+  $result = $conn->query($sql);
+  if ($result->num_rows == 0) {
+    $sql = "INSERT INTO ing_inventory (ingredient_ID, inventory_ID, quantity, unit)
+    VALUES ($ingredientID, $userID, $quantity , '".$unit."') ON DUPLICATE KEY UPDATE quantity = quantity + " . $quantity ;
+  } else {
+    $sql = "UPDATE ing_inventory SET quantity = quantity + " . $quantity . " WHERE ingredient_ID = " .$ingredientID . " AND inventory_ID = " . $userID;
+  }
+
   echo $sql;
   $result = $conn->query($sql);
 
