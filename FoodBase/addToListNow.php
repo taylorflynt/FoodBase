@@ -32,18 +32,18 @@
     $ingredientID =  $row['ingredient_ID'];
   }
 
-  $sql = "SELECT ingredient_ID FROM list_ingredient WHERE ingredient_ID = " .$ingredientID."";
+  $sql = "SELECT * FROM list_ingredient WHERE ingredient_ID = " .$ingredientID." AND list_ID = " .$userID ."";
   $result = $conn->query($sql);
 
   if ($result->num_rows == 0){
     $sql = "INSERT INTO list_ingredient (ingredient_ID, list_ID, quantity, unit)
     VALUES ('" .$ingredientID. "', '" .$userID. "', '" .$_POST['ingredient_quantity']. "', '" .$_POST['ingredient_unit']. "')" ;
-    $result = $conn->query($sql);
   }
   else{
-    //add quantity amount to already existing item in list
+    $sql = "UPDATE list_ingredient SET quantity = quantity + " . $_POST['ingredient_quantity'] . " WHERE ingredient_ID = " .$ingredientID . " AND list_ID = " . $userID;
   }
 
+  $result = $conn->query($sql);
   $conn->close();
   header("Location:myList.php");
   exit;
